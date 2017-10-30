@@ -17,6 +17,10 @@ export class AppComponent {
   };
 
   onSubmit(): void {
-    console.log('Hello World', this.movieQuotes);
+    console.log('Data:', this.movieQuotes);
+    this.movieQuotes = {
+      'quote': '',
+      'movie': ''
+    };
   }
 }

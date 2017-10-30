@@ -11,18 +11,18 @@
 
 <div class="container">
   <div class="well">
-    <form action="">
+    <form (ngSubmit)="onSubmit()" #moviequoteform="ngForm">
       <div class="form-group">
         <label for="quote">Quote</label>
-        <input type="text" class="form-control" id="quote" placeholder="Quote" name="quote" [(ngModel)]="movieQuotes.quote">
+        <input required type="text" class="form-control" id="quote" placeholder="Quote" name="quote" [(ngModel)]="movieQuotes.quote">
       </div>
       <div class="form-group">
         <label for="quote">Movie</label>
-        <input type="text" class="form-control" id="movie" placeholder="From Movie" name="movie" [(ngModel)]="movieQuotes.movie">
+        <input required type="text" class="form-control" id="movie" placeholder="From Movie" name="movie" [(ngModel)]="movieQuotes.movie">
       </div>
       <br>
 
-      <button type="button" class="btn btn-default pull-right" (click)="onSubmit()">Submit</button>
+      <button [disabled]="!moviequoteform.form.valid" type="submit" class="btn btn-default pull-right" >Submit</button>
       <div class="clearfix"></div>
       <p *ngIf="movieQuotes.movie && movieQuotes.quote">
       The Best Quote from {{movieQuotes.movie}} is {{movieQuotes.quote}}
