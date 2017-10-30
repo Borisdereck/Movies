@@ -15,4 +15,8 @@ export class AppComponent {
     'quote': '',
     'movie': ''
   };
+
+  onSubmit(): void {
+    console.log('Hello World', this.movieQuotes);
+  }
 }
