@@ -10,3 +10,8 @@
 .navbar a{
   color: white;
 }
+
+#btnSubmit{
+  background: #AB47BC;
+  color: white;
+}
