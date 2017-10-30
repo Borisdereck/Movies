@@ -4,7 +4,8 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 interface movieQuote {
   movie: string,
-  quote: string
+  quote: string,
+  $key?: string
 }
 
 @Component({
@@ -13,29 +14,38 @@ interface movieQuote {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  readonly quotesPath = "quotes";
+
   formMovieQuotes: movieQuote = {
     'quote': '',
-    'movie': ''
+    'movie': '',
   };
 
-  movieQuotes: Array<movieQuote> = [
-    { movie: '007', quote: 'UUulala' },
-    { movie: 'the mechanics', quote: 'UUulala' },
-    { movie: 'titanic', quote: 'UUulala' },
-    { movie: 'loco por mary', quote: 'UUulala' },
-  ];
+  // movieQuotes: Array<movieQuote> = [
+  //   { movie: '007', quote: 'UUulala' },
+  //   { movie: 'the mechanics', quote: 'UUulala' },
+  //   { movie: 'titanic', quote: 'UUulala' },
+  //   { movie: 'loco por mary', quote: 'UUulala' },
+  // ];
 
-  constructor(db: AngularFireDatabase){
+  public movieQuotesStream: FirebaseListObservable<movieQuote[]>;
 
+  constructor(db: AngularFireDatabase) {
+    this.movieQuotesStream = db.list(this.quotesPath);
   }
 
   onSubmit(): void {
     console.log('Data:', this.formMovieQuotes);
-    this.movieQuotes.unshift(this.formMovieQuotes);
-    
-    // this.formMovieQuotes = {
-    //   'quote': '',
-    //   'movie': ''
-    // };
+    // this.movieQuotes.unshift(this.formMovieQuotes);  
+    try {
+      this.movieQuotesStream.push(this.formMovieQuotes);
+      this.formMovieQuotes = {
+        'quote': '',
+        'movie': ''
+      };
+    } catch (e) {
+      console.log('Form error', e);
+    }
   }
 }
