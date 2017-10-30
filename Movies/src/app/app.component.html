@@ -22,7 +22,8 @@
       </div>
       <br>
 
-      <button [disabled]="!moviequoteform.form.valid" id="btnSubmit" type="submit" class="btn btn-default pull-right">Submit</button>
+      <button [disabled]="!moviequoteform.form.valid" id="btnSubmit" type="submit" class="btn btn-default pull-right">
+        {{formMovieQuotes.$key ? 'Edit' : 'Submit'}}</button>
       <div class="clearfix"></div>
       <p *ngIf="formMovieQuotes.movie && formMovieQuotes.quote">
         The Best Quote from {{formMovieQuotes.movie}} is {{formMovieQuotes.quote}}
@@ -37,12 +38,21 @@
       <tr>
         <th>Quote</th>
         <th>Movie</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let moviequote of (movieQuotesStream | async) | reverse">
         <td>{{moviequote.quote}}</td>
         <td>{{moviequote.movie}}</td>
+        <td>
+        <button type="button" class="btn btn-success btn-xs" (click)="edit(moviequote)">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </button>
+        <button type="button" class="btn btn-danger btn-xs" (click)="remove(moviequote.$key)">
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
+         </td>
       </tr>      
     </tbody>
   </table>

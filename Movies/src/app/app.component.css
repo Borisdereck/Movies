@@ -1,5 +1,5 @@
 .navbar{
-  background: #9C27B0;
+  background: #009688;
 }
 .navbar h2{
   color: white;
@@ -12,9 +12,12 @@
 }
 
 #btnSubmit{
-  background: #AB47BC;
+  background: #26A69A;
   color: white;
 }
 .well{
-  background: #F3E5F5;
+  background: #FFFFFF;
+  /* border-color: #009688; */
+  border-width: 1px;
+  box-shadow: 10px 10px 5px #888888;
 }
