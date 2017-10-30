@@ -8,10 +8,12 @@ import { environment } from "../environments/environment";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 
 import { AppComponent } from './app.component';
+import { ReversePipe } from './reverse.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
