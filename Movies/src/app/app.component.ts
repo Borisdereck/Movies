@@ -3,9 +3,9 @@ import { Component } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 interface movieQuote {
-  movie: string,
-  quote: string,
-  $key?: string
+  movie: string ,
+  quote: string ,
+  $key?: string 
 }
 
 @Component({
@@ -15,7 +15,7 @@ interface movieQuote {
 })
 export class AppComponent {
 
-  readonly quotesPath = "quotes";
+  readonly quotesPath = 'quotes';
 
   formMovieQuotes: movieQuote = {
     'quote': '',
